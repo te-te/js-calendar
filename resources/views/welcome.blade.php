@@ -2,13 +2,13 @@
 <html>
 <head>
 <!-- 캘린더 api css -->
-<link rel='stylesheet' type='text/css' href='/css/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='./css/fullcalendar.css' />
 
 <!-- 제이쿼리 -->
-<script type='text/javascript' src='/js/jquery-1.12.4.min.js'></script>
-<script type='text/javascript' src='/js/jquery-ui.min.js'></script>
+<script type='text/javascript' src='./js/jquery-1.12.4.min.js'></script>
+<script type='text/javascript' src='./js/jquery-ui.min.js'></script>
 <!-- 캘린더 api -->
-<script type='text/javascript' src='/js/fullcalendar.min.js'></script>
+<script type='text/javascript' src='./js/fullcalendar.min.js'></script>
 
 <!-- 부트스트랩 -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -22,7 +22,7 @@
 
 	$(document).ready(function() {
 		$.ajax({
-			url:"/db.php",
+			url:"./db.php",
 			type:"POST",
 			dataType:"json",
 			data:{
@@ -118,7 +118,7 @@
 					<h4 class="modal-title" id="myModalLabel">일정 추가하기</h4>
 				</div>
 				<div class="modal-body">
-					<form class="" action="/db.php" method="post">
+					<form class="" action="./db.php" method="post">
 						<input type="hidden" name="mode" value="input">
 						<h4>일정 이름</h4>
 						<input type="text" name="title" value=""><br><br>
