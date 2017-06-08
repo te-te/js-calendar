@@ -18,66 +18,7 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<script type='text/javascript'>
-
-	$(document).ready(function() {
-		$.ajax({
-			url:"./db.php",
-			type:"POST",
-			dataType:"json",
-			data:{
-				"mode":"output"
-			},
-			success:function(data){
-				// 캘린더 DB가 null 이 아닐때 작동
-				if(data != "1"){
-					var schedule = [];
-					var arr_index = 0;
-
-					// DB의 각 일정들을 한 배열에 저장
-					for (var i in data) {
-						var temp_arr = {
-							title: data[i]['title'],
-							start: new Date(data[i]['start_year'],
-							data[i]['start_month']-1, data[i]['start_day']),
-							end: new Date(data[i]['end_year'],
-							data[i]['end_month']-1, data[i]['end_day'])
-						};
-
-						schedule[arr_index] = temp_arr;
-						arr_index = arr_index + 1;
-					}
-				}
-
-				$('#calendar').fullCalendar({
-					header: {
-						left: 'prev,next today',
-						center: 'title',
-						right: 'month,basicWeek,basicDay'
-					},
-					editable: false,
-					events: schedule
-					// dummy data
-					// events: [
-					// 	{
-					// 		title: 'Birthday Party',
-					// 		start: new Date(y, m, d+1, 19, 0),
-					// 		end: new Date(y, m, d+1, 22, 30),
-					// 		allDay: false
-					// 	},
-					// 	{
-					// 		title: 'Click for Google',
-					// 		start: new Date(y, m, 28),
-					// 		end: new Date(y, m, 29),
-					// 		url: 'http://google.com/'
-					// 	}
-					// ]
-				});
-			}
-		});
-	});
-
-</script>
+<script type='text/javascript' src='./js/customCal.js'></script>
 <style type='text/css'>
 
 	body {
@@ -102,15 +43,15 @@
 <body>
 	<div class="open_modal">
 		<!-- Open Modal Button -->
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
 			일정 추가
 		</button>
 	</div>
 
 	<br><br>
 
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- 일정추가 Modal -->
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -140,5 +81,26 @@
 	<!-- Calendar -->
 	<div id='calendar'></div>
 	<br>
+
+	<!-- 일정보기 Modal -->
+	<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">일정 상세보기</h4>
+				</div>
+				<div class="modal-body">
+					<div id="cal_title"></div>
+					<br>
+					<button id="del_cal">일정 지우기</button>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">확인</button> -->
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

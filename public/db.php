@@ -2,13 +2,29 @@
 
 $pdo = createPDO();
 
-if($_POST['mode'] == "info"){
+if($_POST['mode'] == "del"){
 
+  $sql = "DELETE FROM calendar
+  WHERE num = {$_POST['num']}";
+
+  $st = $pdo->prepare($sql);
+  $st->execute();
+}
+else if($_POST['mode'] == "view"){
+
+  $sql = "SELECT * FROM calendar
+  WHERE num = {$_POST['num']}";
+
+  $st = $pdo->prepare($sql);
+  $st->execute();
+
+  $result = $st->fetch();
+
+  echo json_encode($result);
 }
 else if($_POST['mode'] == "output"){
 
-  $sql = "SELECT title, start_year, start_month,
-  start_day, end_year, end_month, end_day FROM calendar";
+  $sql = "SELECT * FROM calendar";
 
   $st = $pdo->prepare($sql);
   $st->execute();
@@ -38,11 +54,10 @@ else if($_POST['mode'] == "input"){
   $end_month = $e2[1];
   $end_day = $e2[2];
 
-  $sql = "INSERT INTO calendar (title, start_year,
-    start_month,start_day, end_year, end_month,
-    end_day) VALUES ('{$title}', {$start_year},
-      {$start_month}, {$start_day}, {$end_year},
-      {$end_month}, {$end_day})";
+  $sql = "INSERT INTO calendar VALUES (null,
+    '{$title}', {$start_year}, {$start_month},
+    {$start_day}, {$end_year}, {$end_month},
+    {$end_day})";
 
   $st = $pdo->prepare($sql);
   $st->execute();

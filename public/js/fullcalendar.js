@@ -1620,7 +1620,7 @@ function _renderDaySegs(segs, rowCnt, view, minLeft, maxLeft, getRow, dayContent
 							htmlEscape(formatDates(event.start, event.end, view.option('timeFormat'), options)) +
 						"</span>"
 					:'') +
-					"<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
+					"<span class='fc-event-title' onclick=viewCal(" + htmlEscape(event.num) + ")>" + htmlEscape(event.title) + "</span>" +
 				"</a>" +
 				((event.editable || event.editable === undefined && options.editable) && !options.disableResizing && $.fn.resizable ?
 					"<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'></div>"
@@ -3729,29 +3729,29 @@ function setOuterHeight(element, height, includeMargins) {
 
 
 function hsides(_element, includeMargins) {
-	return (parseFloat(jQuery.curCSS(_element, 'paddingLeft', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'paddingRight', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'borderLeftWidth', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'borderRightWidth', true)) || 0) +
+	return (parseFloat(jQuery.css(_element, 'paddingLeft', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'paddingRight', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'borderLeftWidth', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'borderRightWidth', true)) || 0) +
 	       (includeMargins ? hmargins(_element) : 0);
 }
 
 function hmargins(_element) {
-	return (parseFloat(jQuery.curCSS(_element, 'marginLeft', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'marginRight', true)) || 0);
+	return (parseFloat(jQuery.css(_element, 'marginLeft', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'marginRight', true)) || 0);
 }
 
 function vsides(_element, includeMargins) {
-	return (parseFloat(jQuery.curCSS(_element, 'paddingTop', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'paddingBottom', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'borderTopWidth', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'borderBottomWidth', true)) || 0) +
+	return (parseFloat(jQuery.css(_element, 'paddingTop', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'paddingBottom', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'borderTopWidth', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'borderBottomWidth', true)) || 0) +
 	       (includeMargins ? vmargins(_element) : 0);
 }
 
 function vmargins(_element) {
-	return (parseFloat(jQuery.curCSS(_element, 'marginTop', true)) || 0) +
-	       (parseFloat(jQuery.curCSS(_element, 'marginBottom', true)) || 0);
+	return (parseFloat(jQuery.css(_element, 'marginTop', true)) || 0) +
+	       (parseFloat(jQuery.css(_element, 'marginBottom', true)) || 0);
 }
 
 
