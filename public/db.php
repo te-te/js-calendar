@@ -1,7 +1,11 @@
 <?php
-if($_POST['mode'] == "output"){
 
-  $pdo = createPDO();
+$pdo = createPDO();
+
+if($_POST['mode'] == "info"){
+
+}
+else if($_POST['mode'] == "output"){
 
   $sql = "SELECT title, start_year, start_month,
   start_day, end_year, end_month, end_day FROM calendar";
@@ -21,8 +25,6 @@ if($_POST['mode'] == "output"){
   }
 }
 else if($_POST['mode'] == "input"){
-
-  $pdo = createPDO();
 
   $title = $_POST['title'];
 

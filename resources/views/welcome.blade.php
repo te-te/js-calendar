@@ -8,7 +8,7 @@
 <script type='text/javascript' src='./js/jquery-1.12.4.min.js'></script>
 <script type='text/javascript' src='./js/jquery-ui.min.js'></script>
 <!-- 캘린더 api -->
-<script type='text/javascript' src='./js/fullcalendar.min.js'></script>
+<script type='text/javascript' src='./js/fullcalendar.js'></script>
 
 <!-- 부트스트랩 -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
