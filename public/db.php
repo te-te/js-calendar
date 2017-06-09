@@ -73,7 +73,7 @@ else if($_POST['mode'] == "input"){
   $st = $pdo->prepare($sql);
   $st->execute();
 
-  header("Location: /");
+  header("Location: ./");
 }
 
 function createPDO(){
