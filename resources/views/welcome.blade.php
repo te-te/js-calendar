@@ -19,6 +19,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type='text/javascript' src='./js/customCal.js'></script>
+
+<!-- DatePicker -->
+<script type="text/javascript" src="./js/jquery.simple-dtpicker.js"></script>
+<link type="text/css" href="./css/jquery.simple-dtpicker.css" rel="stylesheet" />
+
 <style type='text/css'>
 
 	body {
@@ -64,9 +69,19 @@
 						<h4>일정 이름</h4>
 						<input type="text" name="title" value=""><br><br>
 						<h4>시작일</h4>
-						<input type="date" name="start"><br><br>
+						<input type="text" name="start" value="">
+						<script type="text/javascript">
+							$(function(){
+								$('*[name=start]').appendDtpicker();
+							});
+						</script><br><br>
 						<h4>종료일</h4>
-						<input type="date" name="end"><br><br>
+						<input type="text" name="end" value="">
+						<script type="text/javascript">
+							$(function(){
+								$('*[name=end]').appendDtpicker();
+							});
+						</script><br><br>
 						<input type="submit" value="만들기">
 					</form>
 				</div>
@@ -91,7 +106,9 @@
 					<h4 class="modal-title" id="myModalLabel">일정 상세보기</h4>
 				</div>
 				<div class="modal-body">
-					<div id="cal_title"></div>
+					<div id="cal_title"></div><br>
+					<div id="cal_start"></div><br>
+					<div id="cal_end"></div><br>
 					<br>
 					<button id="del_cal">일정 지우기</button>
 				</div>

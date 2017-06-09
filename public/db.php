@@ -44,20 +44,31 @@ else if($_POST['mode'] == "input"){
 
   $title = $_POST['title'];
 
-  $e1 = explode("-", $_POST['start']);
-  $start_year = $e1[0];
-  $start_month = $e1[1];
-  $start_day = $e1[2];
+  $e_start = explode("-", $_POST['start']);
+  $start_year = $e_start[0];
+  $start_month = $e_start[1];
+  $e_start_daytime = explode(" ", $e_start[2]);
+  $start_day = $e_start_daytime[0];
+  $start_time = $e_start_daytime[1];
+  $e_start_time = explode(":", $start_time);
+  $start_hour = $e_start_time[0];
+  $start_miute = $e_start_time[1];
 
-  $e2 = explode("-", $_POST['end']);
-  $end_year = $e2[0];
-  $end_month = $e2[1];
-  $end_day = $e2[2];
+  $e_end = explode("-", $_POST['end']);
+  $end_year = $e_end[0];
+  $end_month = $e_end[1];
+  $e_end_daytime = explode(" ", $e_end[2]);
+  $end_day = $e_end_daytime[0];
+  $end_time = $e_end_daytime[1];
+  $e_end_time = explode(":", $end_time);
+  $end_hour = $e_end_time[0];
+  $end_miute = $e_end_time[1];
 
   $sql = "INSERT INTO calendar VALUES (null,
     '{$title}', {$start_year}, {$start_month},
-    {$start_day}, {$end_year}, {$end_month},
-    {$end_day})";
+    {$start_day}, {$start_hour}, {$start_miute},
+    {$end_year}, {$end_month}, {$end_day},
+    {$end_hour}, {$end_miute})";
 
   $st = $pdo->prepare($sql);
   $st->execute();

@@ -8,7 +8,7 @@ function delCal(num){
       "num":num
     }
   });
-  
+
   window.location.replace("./");
 }
 function viewCal(num){
@@ -25,6 +25,14 @@ function viewCal(num){
       num + ')>' + '일정 지우기'	+ '</button>';
 
       $("#cal_title").html(data['title']);
+      $("#cal_start").html(data['start_month'] +
+    "월 " + data['start_day'] + "일 " +
+    data['start_hour'] + ":" + data['start_minute'] +
+    "부터");
+      $("#cal_end").html(data['end_month'] +
+    "월 " + data['end_day'] + "일 " +
+    data['end_hour'] + ":" + data['end_minute'] +
+    "까지");
       $("#del_cal").attr('onclick', 'delCal(' + num + ')');
     }
   });
@@ -52,9 +60,12 @@ $(document).ready(function() {
             num: data[i]['num'],
             title: data[i]['title'],
             start: new Date(data[i]['start_year'],
-            data[i]['start_month']-1, data[i]['start_day']),
+            data[i]['start_month']-1, data[i]['start_day'],
+            data[i]['start_hour'], data[i]['start_minute']),
             end: new Date(data[i]['end_year'],
-            data[i]['end_month']-1, data[i]['end_day'])
+            data[i]['end_month']-1, data[i]['end_day'],
+            data[i]['end_hour'], data[i]['end_minute']),
+            allDay: false
           };
 
           schedule[arr_index] = temp_arr;

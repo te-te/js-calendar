@@ -19,9 +19,13 @@ class CreateCalendarTable extends Migration
             $table->string('start_year', 5);
             $table->string('start_month', 5);
             $table->string('start_day', 5);
+            $table->string('start_hour', 5);
+            $table->string('start_minute', 5);
             $table->string('end_year', 5);
             $table->string('end_month', 5);
             $table->string('end_day', 5);
+            $table->string('end_hour', 5);
+            $table->string('end_minute', 5);
         });
     }
 
