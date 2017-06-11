@@ -64,26 +64,23 @@
 					<h4 class="modal-title" id="myModalLabel">일정 추가하기</h4>
 				</div>
 				<div class="modal-body">
-					<form class="" action="./db.php" method="post">
-						<input type="hidden" name="mode" value="input">
-						<h4>일정 이름</h4>
-						<input type="text" name="title" value=""><br><br>
-						<h4>시작일</h4>
-						<input type="text" name="start" value="">
-						<script type="text/javascript">
-							$(function(){
-								$('*[name=start]').appendDtpicker();
-							});
-						</script><br><br>
-						<h4>종료일</h4>
-						<input type="text" name="end" value="">
-						<script type="text/javascript">
-							$(function(){
-								$('*[name=end]').appendDtpicker();
-							});
-						</script><br><br>
-						<input type="submit" value="만들기">
-					</form>
+					<h4>일정 이름</h4>
+					<input type="text" name="title" value=""><br><br>
+					<h4>시작일</h4>
+					<input type="text" name="start" value="">
+					<script type="text/javascript">
+						$(function(){
+							$('*[name=start]').appendDtpicker();
+						});
+					</script><br><br>
+					<h4>종료일</h4>
+					<input type="text" name="end" value="">
+					<script type="text/javascript">
+						$(function(){
+							$('*[name=end]').appendDtpicker();
+						});
+					</script><br><br>
+					<button onclick=createCal()>만들기</button>
 				</div>
 				<div class="modal-footer">
 					<!-- <button type="button" class="btn btn-primary">확인</button> -->

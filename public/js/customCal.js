@@ -1,3 +1,23 @@
+function createCal(){
+  var title = $('*[name=title]').val();
+  var start = $('*[name=start]').val();
+  var end = $('*[name=end]').val();
+
+  $.ajax({
+    url:"./db.php",
+    type:"POST",
+    dataType:"json",
+    data:{
+      "mode":"input",
+      "title":title,
+      "start":start,
+      "end":end
+    }
+  });
+
+  window.location.replace("./");
+}
+
 function delCal(num){
   $.ajax({
     url:"./db.php",
