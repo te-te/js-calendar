@@ -4,11 +4,9 @@ function createCal(){
   var end = $('*[name=end]').val();
 
   $.ajax({
-    url:"./db.php",
+    url:"./calendar",
     type:"POST",
-    dataType:"json",
     data:{
-      "mode":"input",
       "title":title,
       "start":start,
       "end":end
@@ -18,29 +16,13 @@ function createCal(){
   window.location.replace("./");
 }
 
-function delCal(num){
-  $.ajax({
-    url:"./db.php",
-    type:"POST",
-    dataType:"json",
-    data:{
-      "mode":"del",
-      "num":num
-    }
-  });
-
-  window.location.replace("./");
-}
 function viewCal(num){
   $.ajax({
-    url:"./db.php",
-    type:"POST",
+    url:"./calendar/" + num,
     dataType:"json",
-    data:{
-      "mode":"view",
-      "num":num
-    },
     success:function(data){
+      console.log(data);
+
       var button = '<button onclick=delCal(' +
       num + ')>' + '일정 지우기'	+ '</button>';
 
@@ -60,15 +42,27 @@ function viewCal(num){
   $("#viewModal").modal("show");
 }
 
-$(document).ready(function() {
+function delCal(num){
   $.ajax({
-    url:"./db.php",
-    type:"POST",
+    url:"./delcal?num=" + num
+  });
+
+  window.location.replace("./");
+}
+
+$(document).ready(function() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  $.ajax({
+    url:"./calendar",
     dataType:"json",
-    data:{
-      "mode":"output"
-    },
     success:function(data){
+      console.log(data);
+
       // 캘린더 DB가 null 이 아닐때 작동
       if(data != "1"){
         var schedule = [];

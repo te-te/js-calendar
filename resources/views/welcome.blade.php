@@ -1,12 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- 캘린더 api css -->
 <link rel='stylesheet' type='text/css' href='./css/fullcalendar.css' />
 
 <!-- 제이쿼리 -->
 <script type='text/javascript' src='./js/jquery-1.12.4.min.js'></script>
 <script type='text/javascript' src='./js/jquery-ui.min.js'></script>
+
 <!-- 캘린더 api -->
 <script type='text/javascript' src='./js/fullcalendar.js'></script>
 
@@ -18,7 +20,9 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<script type='text/javascript' src='./js/customCal.js'></script>
+<!-- 구동에 필요한 js 코드 -->
+<script type='text/javascript' src='./js/taskCRUD.js'></script>
+<script type='text/javascript' src='./js/addTaskMonth.js'></script>
 
 <!-- DatePicker -->
 <script type="text/javascript" src="./js/jquery.simple-dtpicker.js"></script>
@@ -47,16 +51,42 @@
 </head>
 <body>
 	<div class="open_modal">
-		<!-- Open Modal Button -->
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+		<!-- Open Add Task Month Modal Button -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTaskMonthModal">
+			일정 추가 (월단위)
+		</button>
+	</div>
+	<br>
+
+	<div class="open_modal">
+		<!-- Open Add Task Modal Button -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTaskModal">
 			일정 추가
 		</button>
 	</div>
-
 	<br><br>
 
+	<!-- 일정추가(월단위) Modal -->
+	<div class="modal fade" id="addTaskMonthModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">일정 추가하기 (월단위)</h4>
+				</div>
+				<div class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">완료</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- 일정추가 Modal -->
-	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">

@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('delcal', 'CalendarController@delCal');
+
+Route::resource('calendar','CalendarController');
