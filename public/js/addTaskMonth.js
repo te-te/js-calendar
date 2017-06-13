@@ -1,3 +1,62 @@
+function createCalMonth(){
+
+  // 체크박스 체크돼있는 요일을 구함
+  var days = new Array();
+
+  for(var i = 0; i < 7; i++){
+    var tag1 = "input:checkbox[id=cb_day" + i + "]";
+
+    if($(tag1).is(":checked")){
+      days.push($(tag1).val());
+    }
+  }
+
+  // 체크박스 체크돼있는 대상자를 구함
+  var targets = new Array();
+
+  for(var i = 0; i < 2; i++){
+    var tag2 = "input:checkbox[id=cb_target" + i + "]";
+
+    if($(tag2).is(":checked")){
+      targets.push($(tag2).val());
+    }
+  }
+
+  // 올해와 이번달을 구함
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth();
+
+  // 선택한 요일에 해당하는 이번달의 모든 날짜를 구함
+  var day_arr = new Array();
+
+  for(var i = 0; i < days.length; i++){
+    day_arr.push(getTargetDays(month, days[i]));
+  }
+
+  // 날짜에 맞춰 일정 생성
+  for(var i = 0; i < days.length; i++){
+    for(var j = 0; j < day_arr[i].length; j++){
+      for(var k = 0; k < targets.length; k++){
+        var title = targets[k];
+
+        $.ajax({
+          url:"./calmonth",
+          type:"POST",
+          data:{
+            title:title,
+            year:year,
+            month:month,
+            date:day_arr[i][j]
+          }
+        });
+      }
+    }
+  }
+
+  window.location.replace("./");
+}
+
 // 특정 달의 특정 요일에 해당하는 날짜들을 구하는 함수
 // 인자 : 몇 월, 무슨 요일(한글)
 function getTargetDays(targetMonth, targetDayKor){
@@ -15,16 +74,16 @@ function getTargetDays(targetMonth, targetDayKor){
   var now = new Date();
   var nowYear = now.getFullYear();
   // 특정 달의 시작일
-  var start = new Date(nowYear, targetMonth-1, 1);
+  var start = new Date(nowYear, targetMonth, 1);
   // 특정 달의 말일
-  var end = new Date(nowYear, targetMonth, 0);
+  var end = new Date(nowYear, targetMonth+1, 0);
   var startDate = start.getDate();
   var endDate = end.getDate();
 
   // 특정 달의 시작일부터 하루씩 비교하여
   // 특정 요일에 해당하는 첫번째 날짜를 구함
   for(var i = startDate; i <= endDate; i++){
-    var temp = new Date(nowYear, targetMonth-1, i);
+    var temp = new Date(nowYear, targetMonth, i);
 
     if(targetDay == temp.getDay()){
       var firstDateInTargetDays = i;

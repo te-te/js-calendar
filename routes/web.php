@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('calmonth', 'CalendarController@calMonth');
 Route::get('delcal', 'CalendarController@delCal');
-
-Route::resource('calendar','CalendarController');
+Route::resource('calendar', 'CalendarController');

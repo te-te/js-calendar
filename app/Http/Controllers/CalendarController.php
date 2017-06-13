@@ -66,4 +66,26 @@ class CalendarController extends Controller
     public function delCal(){
       DB::table('calendar')->where('num', $_GET['num'])->delete();
     }
+
+    public function calMonth(){
+      $title = $_POST['title'];
+      $year = $_POST['year'];
+      $month = $_POST['month'] + 1;
+      $date = $_POST['date'];
+
+      DB::table('calendar')->insert([
+        'num' => null,
+        'title' => $title,
+        'start_year' => $year,
+        'start_month' => $month,
+        'start_day' => $date,
+        'start_hour' => 0,
+        'start_minute' => 0,
+        'end_year' => $year,
+        'end_month' => $month,
+        'end_day' => $date,
+        'end_hour' => 0,
+        'end_minute' => 0,
+      ]);
+    }
 }

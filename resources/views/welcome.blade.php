@@ -23,6 +23,7 @@
 <!-- 구동에 필요한 js 코드 -->
 <script type='text/javascript' src='./js/taskCRUD.js'></script>
 <script type='text/javascript' src='./js/addTaskMonth.js'></script>
+<script type='text/javascript' src='./js/simpleToggleButton.js'></script>
 
 <!-- DatePicker -->
 <script type="text/javascript" src="./js/jquery.simple-dtpicker.js"></script>
@@ -45,6 +46,18 @@
 	.open_modal{
 		text-align: right;
 		margin-right: 15%;
+	}
+
+	.btns{
+		display: inline-block;
+	}
+
+	#btn_group_day0 button{
+		color: red;
+	}
+
+	#btn_group_day6 button{
+		color: blue;
 	}
 
 </style>
@@ -75,10 +88,40 @@
 					<h4 class="modal-title" id="myModalLabel">일정 추가하기 (월단위)</h4>
 				</div>
 				<div class="modal-body">
+					@php
+						$days = ["일", "월", "화", "수", "목", "금", "토"];
+					@endphp
+					@for($i = 0; $i < 7; $i++)
+					<!--버튼 그룹-->
+					<div class= "btns" id="btn_group_day{{$i}}">
+				    <!--처음 보여지는 버튼-->
+				    <button id="btn1" class="animation_test btn btn-default btn-lg">{{$days[$i]}}</button>
+				    <!--다음 보여지는 버튼-->
+				    <button id="btn2" class="animation_test hide btn btn-warning btn-lg">{{$days[$i]}}</button>
+				    <!--Hide Checkbox-->
+				    <input type="checkbox" id="cb_day{{$i}}" class="cb_day hide" value="{{$days[$i]}}" />
+					</div>
+					@endfor
 
+					<br><br>
+
+					@php
+						$targets = ["박OO", "김OO"];
+					@endphp
+					@for($i = 0; $i < 2; $i++)
+					<!--버튼 그룹-->
+					<div class= "btns" id="btn_group_target{{$i}}">
+						<!--처음 보여지는 버튼-->
+						<button id="btn1" class="animation_test btn btn-default btn-lg">{{$targets[$i]}}</button>
+						<!--다음 보여지는 버튼-->
+						<button id="btn2" class="animation_test hide btn btn-success btn-lg">{{$targets[$i]}}</button>
+						<!--Hide Checkbox-->
+						<input type="checkbox" id="cb_target{{$i}}" class="cb_target hide" value="{{$targets[$i]}}" />
+					</div>
+					@endfor
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">완료</button>
+					<button type="button" class="btn btn-primary" onclick=createCalMonth()>완료</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				</div>
 			</div>
@@ -110,11 +153,10 @@
 							$('*[name=end]').appendDtpicker();
 						});
 					</script><br><br>
-					<button onclick=createCal()>만들기</button>
 				</div>
 				<div class="modal-footer">
-					<!-- <button type="button" class="btn btn-primary">확인</button> -->
-					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+					<button type="button" class="btn btn-primary" onclick=createCal()>완료</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
