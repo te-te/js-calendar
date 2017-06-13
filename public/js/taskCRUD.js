@@ -7,9 +7,9 @@ function createCal(){
     url:"./calendar",
     type:"POST",
     data:{
-      title:title,
-      start:start,
-      end:end
+      "title":title,
+      "start":start,
+      "end":end
     }
   });
 
